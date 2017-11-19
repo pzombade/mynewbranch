@@ -62,7 +62,7 @@ def processRequest(req):
 
 
     data = json.loads(result)
-    res = makeWebhookResult(data)
+    res = makeWebhookResult(data,req)
     return res
 
 
@@ -76,7 +76,7 @@ def makeYqlQuery(req):
     return "select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "')"
 
 
-def makeWebhookResult(data):
+def makeWebhookResult(data,req):
     query = data.get('query')
     if query is None:
         return {}
@@ -105,7 +105,11 @@ def makeWebhookResult(data):
     brightness = urlopen("https://angular2train-6bcff.firebaseio.com/data/test/brightness.json")
     brightness = json.load(brightness)
 
-    speech = "brightness="+brightness+". Today the weather in " + location.get('city') + ": " + condition.get('text') + \
+    result = req.get("result")
+    parameters = result.get("parameters")
+    requested_brightness = parameters.get("brightness")
+
+    speech = "requested_brightness="+ requested_brightness+" brightness="+brightness+". Today the weather in " + location.get('city') + ": " + condition.get('text') + \
              ", And the temperature is " + condition.get('temp') + " " + units.get('temperature')
 
     print("Response:")
