@@ -59,7 +59,7 @@ def webhook():
 
 def setBrightness(req):
 
-    #brightness = req.get("result").get("parameters").get("brightness")
+    brightness = req.get("result").get("parameters").get("brightness")
     posturl = 'https://angular2train-6bcff.firebaseio.com/data/test.json'
     req_data = {"brightness": "85"}
     params = json.dumps(req_data).encode('utf8')
@@ -70,7 +70,7 @@ def setBrightness(req):
     response = response.read().decode('utf-8')
     print("Resp = "+response)
 
-    speech = "Brightness has been set to =85D"
+    speech = "Brightness has been set to =85D"+brightness
     return {
         "speech": speech,
         "displayText": speech,
@@ -85,7 +85,7 @@ def getBrightness(req):
     turl = "https://angular2train-6bcff.firebaseio.com/data/test/brightness.json"
     brightness = urlopen(turl)
     brightness = json.load(brightness)
-    print ("Hello World! brightness=" + str(brightness));
+    print ("Hello World! brightness=" + str(brightness))
 
     speech = "brightness from db is ="+brightness
     return {
