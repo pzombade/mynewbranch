@@ -25,7 +25,6 @@ from urllib.error import HTTPError
 import json
 import os
 
-
 from flask import Flask
 from flask import request
 from flask import make_response
@@ -99,9 +98,7 @@ def makeWebhookResult(data):
 
     # print(json.dumps(item, indent=4))
 
-
-
-    speech = "Finally from my Reverted local .. Today the weather in " + location.get('city') + ": " + condition.get('text') + \
+    speech = "Reverted to original .. Finally from my local .. Today the weather in " + location.get('city') + ": " + condition.get('text') + \
              ", And the temperature is " + condition.get('temp') + " " + units.get('temperature')
 
     print("Response:")
