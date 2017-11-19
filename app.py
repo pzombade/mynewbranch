@@ -59,8 +59,8 @@ def webhook():
 
 def setBrightness(req):
 
-    brightness = req.get("result").get("parameters").get("brightness")
-
+    #brightness = req.get("result").get("parameters").get("brightness")
+    brightness = 99
     result = req.get("result")
     parameters = result.get("parameters")
     brightness = brightness.get("brightness")
@@ -73,9 +73,9 @@ def setBrightness(req):
     req.get_method = lambda: 'PUT'
     response = urllib.request.urlopen(req)
     response = response.read().decode('utf-8')
-    print("Resp = "+response)
+    
 
-    speech = "Brightness has been set to =85D"+brightness
+    speech = "Brightness has been set to ="+brightness
     return {
         "speech": speech,
         "displayText": speech,
