@@ -74,7 +74,7 @@ def setBrightness(req):
     
     
 
-    speech = "Brightness has been set to "+brightness
+    speech = "Brightness has been set to new value "+brightness
     return {
         "speech": speech,
         "displayText": speech,
