@@ -24,6 +24,7 @@ from urllib.error import HTTPError
 
 import json
 import os
+import urllib
 
 from flask import Flask
 from flask import request
@@ -80,8 +81,11 @@ def setBrightness(req):
 
 def getBrightness(req):
     #data3 = "Hello WOrld!!!" #urlopen("https://angular2train-6bcff.firebaseio.com/data/test/who.json").read()
-    brightness = urlopen("https://angular2train-6bcff.firebaseio.com/data/test/brightness.json")
+    
+    turl = "https://angular2train-6bcff.firebaseio.com/data/test/brightness.json"
+    brightness = urlopen(turl)
     brightness = json.load(brightness)
+    print ("Hello World! brightness=" + str(brightness));
 
     speech = "brightness from db is ="+brightness
     return {
