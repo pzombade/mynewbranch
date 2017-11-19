@@ -40,7 +40,12 @@ def webhook():
     print("Request:")
     print(json.dumps(req, indent=4))
 
-    res = processRequest(req)
+    if req.get("result").get("action") == "yahooWeatherForecast":
+        res = processRequest(req)
+
+    if req.get("result").get("action") == "getBrightness":
+        res = processBrightness(req)        
+    
 
     res = json.dumps(res, indent=4)
     # print(res)
@@ -49,9 +54,22 @@ def webhook():
     return r
 
 
+def processBrightness():
+    #data3 = "Hello WOrld!!!" #urlopen("https://angular2train-6bcff.firebaseio.com/data/test/who.json").read()
+    brightness = urlopen("https://angular2train-6bcff.firebaseio.com/data/test/brightness.json")
+    brightness = json.load(brightness)
+
+    speech = "brightness from db is ="+brightness
+    return {
+        "speech": speech,
+        "displayText": speech,
+        # "data": data,
+        # "contextOut": [],
+        "source": "apiai-weather-webhook-sample"
+    }
+
 def processRequest(req):
-    if req.get("result").get("action") != "yahooWeatherForecast":
-        return {}
+    
     baseurl = "https://query.yahooapis.com/v1/public/yql?"
     yql_query = makeYqlQuery(req)
     if yql_query is None:
@@ -62,7 +80,7 @@ def processRequest(req):
 
 
     data = json.loads(result)
-    res = makeWebhookResult(data,req)
+    res = makeWebhookResult(data)
     return res
 
 
@@ -76,7 +94,7 @@ def makeYqlQuery(req):
     return "select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "')"
 
 
-def makeWebhookResult(data,req):
+def makeWebhookResult(data):
     query = data.get('query')
     if query is None:
         return {}
@@ -105,11 +123,7 @@ def makeWebhookResult(data,req):
     brightness = urlopen("https://angular2train-6bcff.firebaseio.com/data/test/brightness.json")
     brightness = json.load(brightness)
 
-    result = req.get("result")
-    parameters = result.get("parameters")
-    requested_brightness = parameters.get("brightness")
-
-    speech = "requested_brightness="+ requested_brightness+" brightness="+brightness+". Today the weather in " + location.get('city') + ": " + condition.get('text') + \
+    speech = "brightness="+brightness+". Today the weather in " + location.get('city') + ": " + condition.get('text') + \
              ", And the temperature is " + condition.get('temp') + " " + units.get('temperature')
 
     print("Response:")
