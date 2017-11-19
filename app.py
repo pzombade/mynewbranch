@@ -103,7 +103,7 @@ def makeWebhookResult(data):
 
     #data3 = "Hello WOrld!!!" #urlopen("https://angular2train-6bcff.firebaseio.com/data/test/who.json").read()
     brightness = urlopen("https://angular2train-6bcff.firebaseio.com/data/test/brightness.json")
-    brightness = json.load(data3)
+    brightness = json.load(brightness)
 
     speech = "brightness="+brightness+". Today the weather in " + location.get('city') + ": " + condition.get('text') + \
              ", And the temperature is " + condition.get('temp') + " " + units.get('temperature')
