@@ -71,8 +71,8 @@ def setBrightness(req):
     urllib.request.get_method = lambda: 'PUT'
     req = urllib.request.Request(posturl, data=params, headers={'content-type': 'application/json'})
     req.get_method = lambda: 'PUT'
-    response = urllib.request.urlopen(req)
-    response = response.read().decode('utf-8')
+    urllib.request.urlopen(req)
+    
     
 
     speech = "Brightness has been set to ="+brightness
