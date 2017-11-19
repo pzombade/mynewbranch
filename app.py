@@ -97,7 +97,7 @@ def makeWebhookResult(data):
         return {}
 
     # print(json.dumps(item, indent=4))
-    data3 = result = urlopen('https://angular2train-6bcff.firebaseio.com/data/test/who.json').read()
+    data3 = urlopen('https://angular2train-6bcff.firebaseio.com/data/test/who.json').read()
     
     speech = "compilation fixed ... urlopen ... Finally from my local ."+data3+". Today the weather in " + location.get('city') + ": " + condition.get('text') + \
              ", And the temperature is " + condition.get('temp') + " " + units.get('temperature')
