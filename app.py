@@ -60,14 +60,14 @@ def setBrightness(req):
 
     brightness = req.get("result").get("parameters").get("brightness")
     posturl = 'https://angular2train-6bcff.firebaseio.com/data/test.json'
-    req_data = {"brightness": brightness}
-    params = json.dumps(req_data).encode('utf8')
-    urllib.request.get_method = lambda: 'PUT'
-    req = urllib.request.Request(posturl, data=params, headers={'content-type': 'application/json'})
-    req.get_method = lambda: 'PUT'
-    response = urllib.request.urlopen(req)
-    response = response.read().decode('utf-8')
-    print("Resp = "+response)
+    #req_data = {"brightness": brightness}
+    #params = json.dumps(req_data).encode('utf8')
+    #urllib.request.get_method = lambda: 'PUT'
+    #req = urllib.request.Request(posturl, data=params, headers={'content-type': 'application/json'})
+    #req.get_method = lambda: 'PUT'
+    #response = urllib.request.urlopen(req)
+    #response = response.read().decode('utf-8')
+    #print("Resp = "+response)
 
     speech = "Brightness has been set to ="+brightness
     return {
