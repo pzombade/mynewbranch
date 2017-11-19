@@ -56,10 +56,10 @@ def webhook():
 
 def processBrightness(req):
     #data3 = "Hello WOrld!!!" #urlopen("https://angular2train-6bcff.firebaseio.com/data/test/who.json").read()
-    #brightness = urlopen("https://angular2train-6bcff.firebaseio.com/data/test/brightness.json")
-    #brightness = json.load(brightness)
+    brightness = urlopen("https://angular2train-6bcff.firebaseio.com/data/test/brightness.json")
+    brightness = json.load(brightness)
 
-    speech = "brightness from db is =100"
+    speech = "brightness from db is ="+brightness
     return {
         "speech": speech,
         "displayText": speech,
