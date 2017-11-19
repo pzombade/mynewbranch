@@ -39,7 +39,7 @@ def webhook():
     req = request.get_json(silent=True, force=True)
 
     print("Request:")
-    print(json.dumps(req, indent=4))
+    json.dumps(req, indent=4)
 
     if req.get("result").get("action") == "yahooWeatherForecast":
         res = processRequest(req)
@@ -66,7 +66,7 @@ def setBrightness(req):
     brightness = parameters.get("brightness")
 
     posturl = 'https://angular2train-6bcff.firebaseio.com/data/test.json'
-    req_data = {"brightness": brightness}
+    req_data = {"brightness": str(brightness)}
     params = json.dumps(req_data).encode('utf8')
     urllib.request.get_method = lambda: 'PUT'
     req = urllib.request.Request(posturl, data=params, headers={'content-type': 'application/json'})
