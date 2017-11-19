@@ -54,7 +54,7 @@ def webhook():
     return r
 
 
-def processBrightness():
+def processBrightness(req):
     #data3 = "Hello WOrld!!!" #urlopen("https://angular2train-6bcff.firebaseio.com/data/test/who.json").read()
     #brightness = urlopen("https://angular2train-6bcff.firebaseio.com/data/test/brightness.json")
     #brightness = json.load(brightness)
