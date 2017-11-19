@@ -24,6 +24,7 @@ from urllib.error import HTTPError
 
 import json
 import os
+import sys
 
 from flask import Flask
 from flask import request
@@ -97,9 +98,8 @@ def makeWebhookResult(data):
         return {}
 
     # print(json.dumps(item, indent=4))
-    data3 = urlopen('https://angular2train-6bcff.firebaseio.com/data/test/who.json').read()
-    
-    speech = "compilation fixed ... urlopen ... Finally from my local ."+data3+". Today the weather in " + location.get('city') + ": " + condition.get('text') + \
+    pyver = sys.version
+    speech = "pyver"+pyver+" .. Today the weather in " + location.get('city') + ": " + condition.get('text') + \
              ", And the temperature is " + condition.get('temp') + " " + units.get('temperature')
 
     print("Response:")
