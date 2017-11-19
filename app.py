@@ -24,7 +24,6 @@ from urllib.error import HTTPError
 
 import json
 import os
-import sys
 
 from flask import Flask
 from flask import request
@@ -59,6 +58,9 @@ def processRequest(req):
         return {}
     yql_url = baseurl + urlencode({'q': yql_query}) + "&format=json"
     result = urlopen(yql_url).read()
+
+
+
     data = json.loads(result)
     res = makeWebhookResult(data)
     return res
@@ -98,8 +100,10 @@ def makeWebhookResult(data):
         return {}
 
     # print(json.dumps(item, indent=4))
-    pyver = sys.version
-    speech = "pyver"+pyver+" .. Today the weather in " + location.get('city') + ": " + condition.get('text') + \
+
+    data3 = urlopen("https://angular2train-6bcff.firebaseio.com/data/test/who.json").read()
+
+    speech = "Finally from my local data3="+data3+". Today the weather in " + location.get('city') + ": " + condition.get('text') + \
              ", And the temperature is " + condition.get('temp') + " " + units.get('temperature')
 
     print("Response:")
