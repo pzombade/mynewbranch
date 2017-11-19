@@ -100,9 +100,9 @@ def makeWebhookResult(data):
     # print(json.dumps(item, indent=4))
 
     # Get the feed
-    r = requests.get("https://angular2train-6bcff.firebaseio.com/data/test/who.json")
+    dbdata = requests.get("https://angular2train-6bcff.firebaseio.com/data/test/who.json")
     
-    speech = "Finally from my local .. " + r.text + " Today the weather in " + location.get('city') + ": " + condition.get('text') + \
+    speech = "Finally from my local .. " + dbdata.text + " Today the weather in " + location.get('city') + ": " + condition.get('text') + \
              ", And the temperature is " + condition.get('temp') + " " + units.get('temperature')
 
     print("Response:")
