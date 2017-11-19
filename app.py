@@ -44,7 +44,10 @@ def webhook():
         res = processRequest(req)
 
     if req.get("result").get("action") == "getBrightness":
-        res = processBrightness(req)        
+        res = processBrightness(req)
+
+    if req.get("result").get("action") == "setBrightness":
+        res = setBrightness(req)        
     
 
     res = json.dumps(res, indent=4)
@@ -53,6 +56,27 @@ def webhook():
     r.headers['Content-Type'] = 'application/json'
     return r
 
+def setBrightness(req):
+
+    brightness = req.get("result").get("parameters").get("brightness")
+    posturl = 'https://angular2train-6bcff.firebaseio.com/data/test.json'
+    req_data = {"brightness": brightness}
+    params = json.dumps(req_data).encode('utf8')
+    urllib.request.get_method = lambda: 'PUT'
+    req = urllib.request.Request(posturl, data=params, headers={'content-type': 'application/json'})
+    req.get_method = lambda: 'PUT'
+    response = urllib.request.urlopen(req)
+    response = response.read().decode('utf-8')
+    print("Resp = "+response)
+
+    speech = "Brightness has been set to ="+brightness
+    return {
+        "speech": speech,
+        "displayText": speech,
+        # "data": data,
+        # "contextOut": [],
+        "source": "apiai-weather-webhook-sample"
+    }
 
 def processBrightness(req):
     #data3 = "Hello WOrld!!!" #urlopen("https://angular2train-6bcff.firebaseio.com/data/test/who.json").read()
