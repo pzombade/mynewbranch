@@ -59,7 +59,8 @@ def webhook():
 
 def setBrightness(req):
 
-    
+    #brightness = req.get("result").get("parameters").get("brightness")
+    #brightness = 99
     result = req.get("result")
     parameters = result.get("parameters")
     brightness = str(parameters.get("brightness"))
@@ -74,7 +75,7 @@ def setBrightness(req):
     
     
 
-    speech = "Brightness has been set to "+brightness
+    speech = "Brightness has been set to ="+brightness
     return {
         "speech": speech,
         "displayText": speech,
@@ -91,7 +92,7 @@ def getBrightness(req):
     brightness = json.load(brightness)
     print ("Hello World! brightness=" + str(brightness))
 
-    speech = "Current brightness is "+brightness
+    speech = "brightness from db is ="+brightness
     return {
         "speech": speech,
         "displayText": speech,
