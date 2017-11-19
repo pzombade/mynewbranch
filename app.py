@@ -56,10 +56,10 @@ def webhook():
 
 def processBrightness():
     #data3 = "Hello WOrld!!!" #urlopen("https://angular2train-6bcff.firebaseio.com/data/test/who.json").read()
-    brightness = urlopen("https://angular2train-6bcff.firebaseio.com/data/test/brightness.json")
-    brightness = json.load(brightness)
+    #brightness = urlopen("https://angular2train-6bcff.firebaseio.com/data/test/brightness.json")
+    #brightness = json.load(brightness)
 
-    speech = "brightness from db is ="+brightness
+    speech = "brightness from db is =100"
     return {
         "speech": speech,
         "displayText": speech,
@@ -134,7 +134,7 @@ def makeWebhookResult(data):
         "displayText": speech,
         # "data": data,
         # "contextOut": [],
-        "source": "apiai-weather-webhook-sample"
+        "source": "apiai-weather-webhook-sample2"
     }
 
 
