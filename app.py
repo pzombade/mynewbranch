@@ -63,10 +63,10 @@ def setBrightness(req):
     #brightness = 99
     result = req.get("result")
     parameters = result.get("parameters")
-    brightness = parameters.get("brightness")
+    brightness = str(parameters.get("brightness"))
 
     posturl = 'https://angular2train-6bcff.firebaseio.com/data/test.json'
-    req_data = {"brightness": str(brightness)}
+    req_data = {"brightness": brightness}
     params = json.dumps(req_data).encode('utf8')
     urllib.request.get_method = lambda: 'PUT'
     req = urllib.request.Request(posturl, data=params, headers={'content-type': 'application/json'})
