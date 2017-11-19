@@ -60,19 +60,19 @@ def webhook():
 def setBrightness(req):
 
     #brightness = req.get("result").get("parameters").get("brightness")
-    brightness = 99
-    result = req.get("result")
-    parameters = result.get("parameters")
-    brightness = parameters.get("brightness")
+    brightness = "99"
+    #result = req.get("result")
+    #parameters = result.get("parameters")
+    #brightness = parameters.get("brightness")
 
-    posturl = 'https://angular2train-6bcff.firebaseio.com/data/test.json'
-    req_data = {"brightness": str(brightness)}
-    params = json.dumps(req_data).encode('utf8')
-    urllib.request.get_method = lambda: 'PUT'
-    req = urllib.request.Request(posturl, data=params, headers={'content-type': 'application/json'})
-    req.get_method = lambda: 'PUT'
-    response = urllib.request.urlopen(req)
-    response = response.read().decode('utf-8')
+    #posturl = 'https://angular2train-6bcff.firebaseio.com/data/test.json'
+    #req_data = {"brightness": str(brightness)}
+    #params = json.dumps(req_data).encode('utf8')
+    #urllib.request.get_method = lambda: 'PUT'
+    #req = urllib.request.Request(posturl, data=params, headers={'content-type': 'application/json'})
+    #req.get_method = lambda: 'PUT'
+    #response = urllib.request.urlopen(req)
+    #response = response.read().decode('utf-8')
     
 
     speech = "Brightness has been set to ="+brightness
