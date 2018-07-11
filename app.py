@@ -64,7 +64,7 @@ def webhook():
 def getUserInfo(req):
     #data3 = "Hello WOrld!!!" #urlopen("https://angular2train-6bcff.firebaseio.com/data/test/who.json").read()
     
-    turl = "https://angular2train-6bcff.firebaseio.com/data/test/brightness.json"
+    turl = "https://dominospizza-78e07.firebaseio.com/users.json"
     brightness = urlopen(turl)
     brightness = json.load(brightness)
     print ("Hello World! brightness=" + str(brightness))
