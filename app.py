@@ -51,7 +51,7 @@ def webhook():
         res = setBrightness(req)        
     
 	if req.get("result").get("action") == "getUserInfo":
-        res = setBrightness(req) 
+        res = getUserInfo(req) 
 
     res = json.dumps(res, indent=4)
     # print(res)
