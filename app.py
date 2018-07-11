@@ -33,7 +33,7 @@ from flask import make_response
 # Flask app should start in global layout
 app = Flask(__name__)
 
-
+# https://mynewbranch-weather.herokuapp.com/webhook
 @app.route('/webhook', methods=['POST'])
 def webhook():
     req = request.get_json(silent=True, force=True)
@@ -50,12 +50,31 @@ def webhook():
     if req.get("result").get("action") == "setBrightness":
         res = setBrightness(req)        
     
+	if req.get("result").get("action") == "getUserInfo":
+        res = setBrightness(req) 
 
     res = json.dumps(res, indent=4)
     # print(res)
     r = make_response(res)
     r.headers['Content-Type'] = 'application/json'
     return r
+
+def getUserInfo(req):
+    #data3 = "Hello WOrld!!!" #urlopen("https://angular2train-6bcff.firebaseio.com/data/test/who.json").read()
+    
+    turl = "https://dominospizza-78e07.firebaseio.com/users.json"
+    brightness = urlopen(turl)
+    brightness = json.load(brightness)
+    print ("Hello World! brightness=" + str(brightness))
+
+    speech = "user details is "+brightness
+    return {
+        "speech": speech,
+        "displayText": speech,
+        # "data": data,
+        # "contextOut": [],
+        "source": "apiai-weather-webhook-sample"
+    }
 
 def setBrightness(req):
 
@@ -99,6 +118,7 @@ def getBrightness(req):
         # "contextOut": [],
         "source": "apiai-weather-webhook-sample"
     }
+
 
 def processRequest(req):
     
