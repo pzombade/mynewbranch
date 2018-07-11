@@ -1,23 +1,4 @@
-Skip to content
-Features
-Business
-Explore
-Marketplace
-Pricing
 
-Search
-
-Sign in or Sign up
-1 0 0 pzombade/mynewbranch
- Code  Issues 0  Pull requests 0  Projects 0  Insights
-Join GitHub today
-GitHub is home to over 28 million developers working together to host and review code, manage projects, and build software together.
-
-mynewbranch/app.py
-d48ceee  on Nov 19, 2017
-@pzombade pzombade clean up
-     
-179 lines (132 sloc)  4.98 KB
 # -*- coding:utf8 -*-
 # !/usr/bin/env python
 # Copyright 2017 Google Inc. All Rights Reserved.
@@ -196,16 +177,3 @@ if __name__ == '__main__':
     print("Starting app on port %d" % port)
 
     app.run(debug=False, port=port, host='0.0.0.0')
-© 2018 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-API
-Training
-Shop
-Blog
-About
-Press h to open a hovercard with more details.
