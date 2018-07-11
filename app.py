@@ -1,3 +1,23 @@
+Skip to content
+Features
+Business
+Explore
+Marketplace
+Pricing
+
+Search
+
+Sign in or Sign up
+1 0 0 pzombade/mynewbranch
+ Code  Issues 0  Pull requests 0  Projects 0  Insights
+Join GitHub today
+GitHub is home to over 28 million developers working together to host and review code, manage projects, and build software together.
+
+mynewbranch/app.py
+d48ceee  on Nov 19, 2017
+@pzombade pzombade clean up
+     
+179 lines (132 sloc)  4.98 KB
 # -*- coding:utf8 -*-
 # !/usr/bin/env python
 # Copyright 2017 Google Inc. All Rights Reserved.
@@ -33,7 +53,6 @@ from flask import make_response
 # Flask app should start in global layout
 app = Flask(__name__)
 
-# https://mynewbranch-weather.herokuapp.com/webhook
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
@@ -51,31 +70,12 @@ def webhook():
     if req.get("result").get("action") == "setBrightness":
         res = setBrightness(req)        
     
-	if req.get("result").get("action") == "getUserInfo":
-        res = getBrightness(req) 
 
     res = json.dumps(res, indent=4)
     # print(res)
     r = make_response(res)
     r.headers['Content-Type'] = 'application/json'
     return r
-
-def getUserInfo(req):
-    #data3 = "Hello WOrld!!!" #urlopen("https://angular2train-6bcff.firebaseio.com/data/test/who.json").read()
-    
-    turl = "https://dominospizza-78e07.firebaseio.com/users.json"
-    brightness = urlopen(turl)
-    brightness = json.load(brightness)
-    print ("Hello World! brightness=" + str(brightness))
-
-    speech = "user details is "+brightness
-    return {
-        "speech": speech,
-        "displayText": speech,
-        # "data": data,
-        # "contextOut": [],
-        "source": "apiai-weather-webhook-sample"
-    }
 
 def setBrightness(req):
 
@@ -119,7 +119,6 @@ def getBrightness(req):
         # "contextOut": [],
         "source": "apiai-weather-webhook-sample"
     }
-
 
 def processRequest(req):
     
@@ -197,3 +196,16 @@ if __name__ == '__main__':
     print("Starting app on port %d" % port)
 
     app.run(debug=False, port=port, host='0.0.0.0')
+© 2018 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+API
+Training
+Shop
+Blog
+About
+Press h to open a hovercard with more details.
