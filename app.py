@@ -34,6 +34,7 @@ from flask import make_response
 app = Flask(__name__)
 
 # https://mynewbranch-weather.herokuapp.com/webhook
+
 @app.route('/webhook', methods=['POST'])
 def webhook():
     req = request.get_json(silent=True, force=True)
@@ -51,7 +52,7 @@ def webhook():
         res = setBrightness(req)        
     
 	if req.get("result").get("action") == "getUserInfo":
-        res = getUserInfo(req) 
+        res = getBrightness(req) 
 
     res = json.dumps(res, indent=4)
     # print(res)
