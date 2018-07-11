@@ -52,7 +52,7 @@ def webhook():
         res = setBrightness(req)
 
     if req.get("result").get("action") == "getUserInfo":
-        res = getBrightness(req)        
+        res = getUserInfo(req)        
     
 
     res = json.dumps(res, indent=4)
@@ -60,6 +60,23 @@ def webhook():
     r = make_response(res)
     r.headers['Content-Type'] = 'application/json'
     return r
+
+def getUserInfo(req):
+    #data3 = "Hello WOrld!!!" #urlopen("https://angular2train-6bcff.firebaseio.com/data/test/who.json").read()
+    
+    turl = "https://angular2train-6bcff.firebaseio.com/data/test/brightness.json"
+    brightness = urlopen(turl)
+    brightness = json.load(brightness)
+    print ("Hello World! brightness=" + str(brightness))
+
+    speech = "User info is "+brightness
+    return {
+        "speech": speech,
+        "displayText": speech,
+        # "data": data,
+        # "contextOut": [],
+        "source": "apiai-weather-webhook-sample"
+    }
 
 def setBrightness(req):
 
