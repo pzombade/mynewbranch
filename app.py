@@ -1,4 +1,3 @@
-
 # -*- coding:utf8 -*-
 # !/usr/bin/env python
 # Copyright 2017 Google Inc. All Rights Reserved.
@@ -52,7 +51,10 @@ def webhook():
         res = setBrightness(req)
 
     if req.get("result").get("action") == "getUserInfo":
-        res = getUserInfo(req)        
+        res = getUserInfo(req)
+
+	if req.get("result").get("action") == "translate":
+        res = translate(req)		
     
 
     res = json.dumps(res, indent=4)
@@ -60,6 +62,29 @@ def webhook():
     r = make_response(res)
     r.headers['Content-Type'] = 'application/json'
     return r
+
+	
+def translate(req):
+    
+	#result = req.get("result")
+    #q = result.get("q")
+    #target = str(parameters.get("target"))
+    
+	turl = "https://translation.googleapis.com/language/translate/v2?q=name&target=hi&key=AIzaSyA7KsaP7QYcxqdQKVAj6wVc8-66KQlX3kc"
+    #turl = "https://translation.googleapis.com/language/translate/v2?q="+q+"&target="+target+"&key=AIzaSyA7KsaP7QYcxqdQKVAj6wVc8-66KQlX3kc"
+    brightness = urlopen(turl)
+    brightness = json.load(brightness)
+    print ("Translated=" + str(brightness))
+
+    speech = "Translated "+brightness
+    return {
+        "speech": speech,
+        "displayText": speech,
+        # "data": data,
+        # "contextOut": [],
+        "source": "apiai-weather-webhook-sample"
+    }
+	
 
 def getUserInfo(req):
     #data3 = "Hello WOrld!!!" #urlopen("https://angular2train-6bcff.firebaseio.com/data/test/who.json").read()
