@@ -51,12 +51,11 @@ def webhook():
         res = setBrightness(req)
 
     if req.get("result").get("action") == "getUserInfo":
-        res = getUserInfo(req)
+	res = getUserInfo(req)
 
-	if req.get("result").get("action") == "translate":
-        res = translate(req)		
+    if req.get("result").get("action") == "translate":
+	res = translate(req)		
     
-
     res = json.dumps(res, indent=4)
     # print(res)
     r = make_response(res)
@@ -66,11 +65,11 @@ def webhook():
 	
 def translate(req):
     
-	#result = req.get("result")
+    #result = req.get("result")
     #q = result.get("q")
     #target = str(parameters.get("target"))
     
-	turl = "https://translation.googleapis.com/language/translate/v2?q=name&target=hi&key=AIzaSyA7KsaP7QYcxqdQKVAj6wVc8-66KQlX3kc"
+    turl = "https://translation.googleapis.com/language/translate/v2?q=name&target=hi&key=AIzaSyA7KsaP7QYcxqdQKVAj6wVc8-66KQlX3kc"
     #turl = "https://translation.googleapis.com/language/translate/v2?q="+q+"&target="+target+"&key=AIzaSyA7KsaP7QYcxqdQKVAj6wVc8-66KQlX3kc"
     #brightness = urlopen(turl)
     #brightness = json.load(brightness)
