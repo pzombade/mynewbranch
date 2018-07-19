@@ -72,11 +72,11 @@ def translate(req):
     
 	turl = "https://translation.googleapis.com/language/translate/v2?q=name&target=hi&key=AIzaSyA7KsaP7QYcxqdQKVAj6wVc8-66KQlX3kc"
     #turl = "https://translation.googleapis.com/language/translate/v2?q="+q+"&target="+target+"&key=AIzaSyA7KsaP7QYcxqdQKVAj6wVc8-66KQlX3kc"
-    brightness = urlopen(turl)
-    brightness = json.load(brightness)
-    print ("Translated=" + str(brightness))
+    #brightness = urlopen(turl)
+    #brightness = json.load(brightness)
+    #print ("Translated=" + str(brightness))
 
-    speech = "Translated "+brightness
+    speech = "Translated "
     return {
         "speech": speech,
         "displayText": speech,
